@@ -5,7 +5,7 @@
         <menuitem id="hms_room_category" name="Rooms" action="ica_hms.hms_room_action"/>
     </menuitem>
 
-    <!--    <menuitem id="ica_hms_root" name="Hotel Management System" web_icon="ica_hms,static/description/icon.png"/>-->
 
+    <!--    <menuitem id="ica_hms_root" name="Hotel Management System" web_icon="ica_hms,static/description/icon.png"/>-->
     <!--    <menuitem id="hms_room_category" name="Rooms" action="ica_hms.hms_room_action" parent="ica_hms.ica_hms_root"/>-->
 </odoo>

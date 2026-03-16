@@ -6,8 +6,8 @@
         <field name="model">hms.room</field>
         <field name="arch" type="xml">
             <list string="hms_room_tree" decoration-danger="state == 'not_available'"
-                       decoration-success="state == 'available'"
-                       decoration-muted="state == 'draft'">
+                  decoration-success="state == 'available'"
+                  decoration-muted="state == 'draft'">
                 <field name="name"/>
                 <field name="state" widget="badge"
                        decoration-danger="state == 'not_available'"
