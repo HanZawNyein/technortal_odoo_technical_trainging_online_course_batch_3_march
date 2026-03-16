@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="ica_hms_root" name="Hotel Management System">
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="hms_room_category" name="Rooms" action="ica_hms.hms_room_action"/>
+    </menuitem>
+</odoo>

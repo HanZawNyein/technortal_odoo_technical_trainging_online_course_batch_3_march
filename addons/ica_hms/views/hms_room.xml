@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="hms_room_view_list" model="ir.ui.view">
+        <field name="name">hms_room_view_list</field>
+        <field name="model">hms.room</field>
+        <field name="arch" type="xml">
+            <list string="hms_room_tree" decoration-danger="state == 'not_available'"
+                       decoration-success="state == 'available'"
+                       decoration-muted="state == 'draft'">
+                <field name="name"/>
+                <field name="state" widget="badge"
+                       decoration-danger="state == 'not_available'"
+                       decoration-success="state == 'available'"
+                       decoration-muted="state == 'draft'"/>
+            </list>
+        </field>
+    </record>
+    <record id="hms_room_view_form" model="ir.ui.view">
+        <field name="name">hms_room_view_form_view_form</field>
+        <field name="model">hms.room</field>
+        <field name="arch" type="xml">
+            <form string="hms_room_view_form_form">
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
+                <sheet>
+                    <!--                    <group>-->
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <!--                        <group>-->
+                    <!--                            <field name="state"/>-->
+                    <!--                        </group>-->
+                    <!--                    </group>-->
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="hms_room_action" model="ir.actions.act_window">
+        <field name="name">Rooms</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hms.room</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
