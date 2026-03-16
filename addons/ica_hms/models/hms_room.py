@@ -9,5 +9,4 @@ class HMSRoom(models.Model):
     state = fields.Selection(
         [('draft', 'Draft'),
          ('available', 'Available'),
-         ('not_available', 'Not Available')],
-        default='draft')
+         ('not_available', 'Not Available')], default='draft')
