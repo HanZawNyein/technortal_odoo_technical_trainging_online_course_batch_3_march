@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="hms_room_order_view_form" model="ir.ui.view">
+        <field name="name">hms_room_order_view_form_view_form</field>
+        <field name="model">hms.room.order</field>
+        <field name="arch" type="xml">
+            <form string="hms_room_order_view_form_form">
+                <header>
+                    <button name="action_create_invoice" string="Create Invoice" type="object"/>
+                    <button name="action_draft" type="object" string="Draft" invisible="state != 'cancelled'"/>
+                    <button name="action_confirmed" type="object" string="Confirm" class="btn btn-info"
+                            invisible="state != 'draft'"/>
+                    <button name="action_paid" type="object" string="Paid" class="btn btn-primary"
+                            invisible="state != 'confirmed'"/>
+                    <button name="action_check_in" type="object" string="Check In" class="btn btn-success"
+                            invisible="state != 'paid'"/>
+                    <button name="action_check_out" type="object" string="Check Out" class="btn btn-success"
+                            invisible="state != 'checked_in'"/>
+                    <button name="action_cancel" type="object" string="Cancel" class="btn btn-danger"
+                            invisible="state not in ['confirmed','draft']"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,paid"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Room Information">
+                            <field name="name"/>
+                            <field name="room_type_id"/>
+                            <field name="room_id" domain="[('type','=',room_type_id),('state','=','available')]"/>
+                        </group>
+                        <group string="Amount information">
+                            <field name="company_id"/>
+                            <field name="currency_id"/>
+                            <field name="amount"/>
+                            <field name="total_amount"/>
+                        </group>
+                        <group string="Extra Information">
+                            <field name="extra_per_fees"/>
+                            <field name="extra_qty"/>
+                            <field name="total_extra_fees"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="hms_room_order_action" model="ir.actions.act_window">
+        <field name="name">Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hms.room.order</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

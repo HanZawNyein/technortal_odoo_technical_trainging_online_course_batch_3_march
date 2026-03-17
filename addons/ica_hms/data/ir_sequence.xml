@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="seq_hms_room_order" model="ir.sequence">
+        <field name="name">HMS Room Order</field>
+        <field name="code">hms.room.order</field>
+        <field name="prefix">IH</field>
+        <field name="padding">6</field>
+    </record>
+</odoo>
