@@ -16,6 +16,9 @@
                         <group>
                             <field name="name" readonly="state != 'draft'"/>
                             <field name="partner_ids" widget="many2many_tags" readonly="state != 'draft'"/>
+                            <field name="company_id"/>
+                            <field name="currency_id"/>
+                            <field name="per_amount"/>
                         </group>
                         <group>
                             <field name="start_date" readonly="state != 'draft'"/>
@@ -28,6 +31,7 @@
                             <field name="draw_number"/>
                             <field name="partner_id"/>
                             <field name="payout_date"/>
+                            <button name="action_view" type="object" string="View" class="btn btn-primary"/>
                         </list>
                     </field>
                 </sheet>

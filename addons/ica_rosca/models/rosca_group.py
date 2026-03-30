@@ -21,6 +21,9 @@ class RoscaGroup(models.Model):
         ('lucky_draw', 'Lucky Draw')
     ], default='draft')
     duration_days = fields.Integer(default=1)
+    company_id = fields.Many2one('res.company',default=lambda self: self.env.company)
+    currency_id = fields.Many2one('res.currency',related='company_id.currency_id')
+    per_amount = fields.Monetary(currency_field='currency_id')
 
     def action_draft(self):
         self.state = 'draft'
@@ -41,7 +44,7 @@ class RoscaGroup(models.Model):
         for partner, num in zip(partners, numbers):
             data.append((0, 0, {
                 'draw_number': num,
-                'partner_id': partner.id
+                'partner_id': partner.id,
             }))
 
         self.line_ids = data
