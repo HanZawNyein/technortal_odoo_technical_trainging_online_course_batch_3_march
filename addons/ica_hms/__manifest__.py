@@ -5,6 +5,7 @@
     "depends": ["base","account"],
     "data": [
         "data/ir_sequence.xml",
+        "security/ir.model.access.csv",
         "views/hms_room_type.xml",
         "views/hms_room.xml",
         "views/hms_room_order.xml",

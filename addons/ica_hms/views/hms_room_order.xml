@@ -6,7 +6,8 @@
         <field name="arch" type="xml">
             <form string="hms_room_order_view_form_form">
                 <header>
-                    <button name="action_create_invoice" string="Create Invoice" type="object"/>
+<!--                    <button name="action_view_invoices" string="View Invoices" type="object"/>-->
+                    <button name="action_create_invoice" string="Create Invoices" type="object" invisible="state !='confirmed'"/>
                     <button name="action_draft" type="object" string="Draft" invisible="state != 'cancelled'"/>
                     <button name="action_confirmed" type="object" string="Confirm" class="btn btn-info"
                             invisible="state != 'draft'"/>
@@ -21,6 +22,12 @@
                     <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,paid"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_invoices" type="object" class="oe_stat_button"
+                                icon="fa-pencil-square-o" invisible="not invoice_count">
+                            <field name="invoice_count" widget="statinfo" string="Invoices"/>
+                        </button>
+                    </div>
                     <div class="oe_title">
                         <h1>
                             <field name="name"/>

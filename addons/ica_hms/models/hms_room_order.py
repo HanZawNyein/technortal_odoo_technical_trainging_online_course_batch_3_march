@@ -24,6 +24,13 @@ class HMSRoomOrder(models.Model):
     extra_per_fees = fields.Monetary(currency_field='currency_id')
     total_extra_fees = fields.Monetary(currency_field='currency_id')
     total_amount = fields.Monetary(currency_field='currency_id', compute='_compute_total_amount')
+    invoice_ids = fields.Many2many('account.move',copy=False)
+    invoice_count = fields.Integer(compute="_compute_invoice_count")
+
+    @api.depends('invoice_ids')
+    def _compute_invoice_count(self):
+        for record in self:
+            record.invoice_count = len(record.invoice_ids)
 
     @api.constrains('extra_qty')
     def _check_extra_qty(self):
@@ -52,9 +59,11 @@ class HMSRoomOrder(models.Model):
         self.state = 'confirmed'
         if self.name == _("New"):
             self.name = self.env['ir.sequence'].next_by_code('hms.room.order')
+        # return self.action_create_invoice()
 
     def action_paid(self):
-        self.state = 'paid'
+        for record in self:
+            record.state = 'paid'
 
     def action_check_in(self):
         self.state = 'checked_in'
@@ -124,9 +133,19 @@ class HMSRoomOrder(models.Model):
                 'source_id': False, 'statement_line_id': False, 'tax_cash_basis_created_move_ids': [],
                 'taxable_supply_date': False, 'team_id': 1, 'user_id': 1}
         move_id = self.env['account.move'].create(data)
+        self.invoice_ids += move_id
         return {
             "type": "ir.actions.act_window",
             "res_model": "account.move",
             "res_id": move_id.id,
             "view_mode": "form"
+        }
+
+    def action_view_invoices(self):
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": "account.move",
+            # "res_id": move_id.id,
+            "view_mode": "list,form",
+            "domain":[('id','in',self.invoice_ids.ids)],
         }
