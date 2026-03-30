@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="rosca_group_view_form" model="ir.ui.view">
+        <field name="name">rosca_group_view_form_view_form</field>
+        <field name="model">rosca.group</field>
+        <field name="arch" type="xml">
+            <form string="rosca_group_view_form_form">
+                <header>
+                    <button name="action_draft" type="object" string="Draft" invisible="1"/>
+                    <button name="action_locked" type="object" class="btn btn-primary" string="Lock" invisible="state!= 'draft'"/>
+                    <button name="action_lucky_draw" type="object" class="btn btn-primary" string="Lucky Draw" invisible="state != 'locked'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="state != 'draft'"/>
+                            <field name="partner_ids" widget="many2many_tags" readonly="state != 'draft'"/>
+                        </group>
+                        <group>
+                            <field name="start_date" readonly="state != 'draft'"/>
+                            <field name="duration_days" readonly="state != 'draft'"/>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                    <field name="line_ids" readonly="state != 'draft'" invisible="state in ['draft','locked']">
+                        <list default_order="draw_number asc">
+                            <field name="draw_number"/>
+                            <field name="partner_id"/>
+                            <field name="payout_date"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="rosca_group_action" model="ir.actions.act_window">
+        <field name="name">Groups</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">rosca.group</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

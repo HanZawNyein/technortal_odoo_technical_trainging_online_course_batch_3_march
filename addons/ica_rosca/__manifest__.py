@@ -1,0 +1,11 @@
+{
+    "name":"ROSCA",
+    "author":"Agga, IdeaCode Academy",
+    "depends":["base","contacts"],
+    "data":[
+        "security/ir.model.access.csv",
+        "views/rosca_group.xml",
+        "views/menus.xml",
+    ],
+    "license":"LGPL-3"
+}

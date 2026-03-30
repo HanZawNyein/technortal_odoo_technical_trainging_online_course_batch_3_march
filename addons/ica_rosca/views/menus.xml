@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="ica_rosca_root" name="ROSCA">
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="rosca_group_category" name="Groups" action="ica_rosca.rosca_group_action"/>
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="configuration_category" name="Configuration">
+            <!-- This Menu Item must have a parent and an action -->
+            <menuitem id="contacts_category" name="Contacts" action="contacts.action_contacts"/>
+        </menuitem>
+    </menuitem>
+</odoo>
