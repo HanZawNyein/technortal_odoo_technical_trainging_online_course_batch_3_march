@@ -7,6 +7,7 @@
         <menuitem id="configuration_category" name="Configuration">
             <!-- This Menu Item must have a parent and an action -->
             <menuitem id="contacts_category" name="Contacts" action="contacts.action_contacts"/>
+            <menuitem id="payout_category" name="Payouts" action="ica_rosca.rosca_payout_line_action"/>
         </menuitem>
     </menuitem>
 </odoo>

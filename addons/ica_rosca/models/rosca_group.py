@@ -42,13 +42,14 @@ class RoscaGroup(models.Model):
         for partner, num in zip(partners, numbers):
             data.append((0, 0, {
                 'draw_number': num,
-                'reference':self.name,
+                'reference':f"{self.name}-{num}",
                 'partner_id': partner.id,
             }))
 
         self.line_ids = data
-        self.state = 'lucky_draw'
         self._action_payout_date()
+        self.line_ids.action_generate_payout_line()
+        self.state = 'lucky_draw'
 
     def _action_payout_date(self):
         payout_date = self.start_date

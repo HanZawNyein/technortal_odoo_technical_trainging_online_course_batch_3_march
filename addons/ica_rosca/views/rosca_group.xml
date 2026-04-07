@@ -36,11 +36,15 @@
                             <field name="reference" optional="hide"/>
                             <field name="partner_id"/>
                             <field name="payout_date"/>
+                            <field name="total_amount" sum="Total"/>
+                            <field name="paid_amount" sum="Paid"/>
+                            <field name="remaining_amount" sum="Remaining"/>
                             <!--                            <button name="action_view" type="object" string="View" class="btn btn-primary"/>-->
                         </list>
                         <form>
                             <header>
-                                <button name="action_generate_payout_line" type="object" string="Generate Payout Line" class="btn btn-primary"/>
+                                <button name="action_generate_payout_line" type="object" string="Generate Payout Line"
+                                        class="btn btn-primary" invisible="payout_line_ids"/>
                             </header>
                             <sheet>
                                 <group>
@@ -53,6 +57,22 @@
                                         <field name="draw_number"/>
                                         <field name="reference"/>
                                         <field name="payout_date"/>
+                                        <field name="company_id"/>
+                                        <field name="currency_id"/>
+                                    </group>
+                                </group>
+                                <notebook>
+                                    <page string="Payout Lines" name="payout_lines">
+                                        <field name="payout_line_ids"/>
+                                    </page>
+                                </notebook>
+                                <group>
+                                    <group/>
+                                    <group>
+
+                                        <field name="total_amount"/>
+                                        <field name="paid_amount"/>
+                                        <field name="remaining_amount"/>
                                     </group>
                                 </group>
                             </sheet>

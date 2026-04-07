@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_rosca_group,rosca.group,model_rosca_group,base.group_user,1,1,1,1
 access_rosca_group_line,rosca.group.line,model_rosca_group_line,base.group_user,1,1,1,1
+access_rosca_payout_line,rosca.payout.line,model_rosca_payout_line,base.group_user,1,1,1,1

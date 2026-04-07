@@ -7,4 +7,11 @@
         <field name="prefix">RG</field>
         <field name="padding">6</field>
     </record>
+
+    <record id="seq_rosca_payout_line" model="ir.sequence">
+        <field name="name">ROSCA Payout</field>
+        <field name="code">rosca.payout.line</field>
+        <field name="prefix">RP</field>
+        <field name="padding">6</field>
+    </record>
 </odoo>

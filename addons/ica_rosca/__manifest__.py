@@ -6,6 +6,8 @@
         "data/ir_sequence.xml",
         "security/ir.model.access.csv",
         "views/rosca_group.xml",
+        "views/rosca_payout_line.xml",
+
         "views/menus.xml",
     ],
     "license":"LGPL-3"
