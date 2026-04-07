@@ -6,7 +6,8 @@ class RoscaGroupLine(models.Model):
     _rec_name = 'partner_id'
 
     group_id = fields.Many2one('rosca.group')
-    partner_id = fields.Many2one('res.partner',required=True)
+    partner_ids = fields.Many2many('res.partner',related="group_id.partner_ids",string="Rosca Groups")
+    partner_id = fields.Many2one('res.partner',required=True,string="Owner")
     draw_number = fields.Integer()
     reference = fields.Char()
     payout_date = fields.Date()

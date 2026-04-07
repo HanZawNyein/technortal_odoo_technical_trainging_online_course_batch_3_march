@@ -47,6 +47,7 @@
                                     <group>
                                         <field name="group_id"/>
                                         <field name="partner_id"/>
+                                        <field name="partner_ids" widget="many2many_tags"/>
                                     </group>
                                     <group>
                                         <field name="draw_number"/>
