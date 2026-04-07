@@ -8,6 +8,7 @@ class RoscaGroupLine(models.Model):
     group_id = fields.Many2one('rosca.group')
     partner_id = fields.Many2one('res.partner',required=True)
     draw_number = fields.Integer()
+    reference = fields.Char()
     payout_date = fields.Date()
 
     def action_view(self):
@@ -18,3 +19,6 @@ class RoscaGroupLine(models.Model):
             "res_id": self.id,
             "view_mode": "form",
         }
+
+    def action_generate_payout_line(self):
+        ...

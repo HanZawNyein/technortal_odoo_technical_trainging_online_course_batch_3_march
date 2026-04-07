@@ -7,18 +7,22 @@
             <form string="rosca_group_view_form_form">
                 <header>
                     <button name="action_draft" type="object" string="Draft" invisible="1"/>
-                    <button name="action_locked" type="object" class="btn btn-primary" string="Lock" invisible="state!= 'draft'"/>
-                    <button name="action_lucky_draw" type="object" class="btn btn-primary" string="Lucky Draw" invisible="state != 'locked'"/>
+                    <button name="action_locked" type="object" class="btn btn-primary" string="Lock"
+                            invisible="state!= 'draft'"/>
+                    <button name="action_unlock" type="object" class="btn btn-primary" string="Unlock"
+                            invisible="state!= 'locked'"/>
+                    <button name="action_lucky_draw" type="object" class="btn btn-primary" string="Lucky Draw"
+                            invisible="state != 'locked'"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
                     <group>
                         <group>
-                            <field name="name" readonly="state != 'draft'"/>
+                            <field name="name"/>
                             <field name="partner_ids" widget="many2many_tags" readonly="state != 'draft'"/>
-                            <field name="company_id"/>
+                            <field name="company_id" readonly="state != 'draft'"/>
                             <field name="currency_id"/>
-                            <field name="per_amount"/>
+                            <field name="per_amount" readonly="state != 'draft'"/>
                         </group>
                         <group>
                             <field name="start_date" readonly="state != 'draft'"/>
@@ -29,10 +33,29 @@
                     <field name="line_ids" readonly="state != 'draft'" invisible="state in ['draft','locked']">
                         <list default_order="draw_number asc">
                             <field name="draw_number"/>
+                            <field name="reference" optional="hide"/>
                             <field name="partner_id"/>
                             <field name="payout_date"/>
-                            <button name="action_view" type="object" string="View" class="btn btn-primary"/>
+                            <!--                            <button name="action_view" type="object" string="View" class="btn btn-primary"/>-->
                         </list>
+                        <form>
+                            <header>
+                                <button name="action_generate_payout_line" type="object" string="Generate Payout Line" class="btn btn-primary"/>
+                            </header>
+                            <sheet>
+                                <group>
+                                    <group>
+                                        <field name="group_id"/>
+                                        <field name="partner_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="draw_number"/>
+                                        <field name="reference"/>
+                                        <field name="payout_date"/>
+                                    </group>
+                                </group>
+                            </sheet>
+                        </form>
                     </field>
                 </sheet>
             </form>
